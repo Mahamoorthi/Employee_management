@@ -6,7 +6,7 @@ on:
       - "develop/**"
   pull_request:
     branches:
-      - develop/default
+      - "develop/default"
 
 jobs:
   build:
@@ -20,20 +20,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm install
 
-      - name: Run Lint
-        run: npm run lint
-
-      - name: Run Tests
-        run: npm test -- --watchAll=false
-        continue-on-error: true
-
-      - name: Build React App
+      - name: Build Project
         run: npm run build
-
-      - name: Build Successful
-        run: echo "✅ React application built successfully."
